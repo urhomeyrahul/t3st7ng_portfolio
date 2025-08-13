@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Renderer, Camera, Geometry, Program, Mesh } from "ogl";
 
 const defaultColors = ["#ffffff", "#ffffff", "#ffffff"];
@@ -93,8 +93,18 @@ const Particles = ({
 }) => {
   const containerRef = useRef(null);
   const mouseRef = useRef({ x: 0, y: 0 });
+  const [pageHeight, setPageHeight] = useState(0);
+
+  // Get page height only in browser
+  useEffect(() => {
+    if (typeof document !== "undefined") {
+      setPageHeight(document.documentElement.scrollHeight);
+    }
+  }, []);
 
   useEffect(() => {
+    if (!pageHeight) return; // wait until we know the height
+
     const container = containerRef.current;
     if (!container) return;
 
@@ -107,23 +117,23 @@ const Particles = ({
     camera.position.set(0, 0, cameraDistance);
 
     const resize = () => {
-      const width = container.clientWidth;
-      const height = container.clientHeight;
+      const width = window.innerWidth;
+      const height = document.documentElement.scrollHeight;
+      setPageHeight(height); // update state in case page grew
       renderer.setSize(width, height);
-      camera.perspective({ aspect: gl.canvas.width / gl.canvas.height });
+      camera.perspective({ aspect: width / window.innerHeight });
     };
     window.addEventListener("resize", resize, false);
     resize();
 
     const handleMouseMove = (e) => {
-      const rect = container.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-      const y = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
+      const x = (e.clientX / window.innerWidth) * 2 - 1;
+      const y = -((e.clientY / window.innerHeight) * 2 - 1);
       mouseRef.current = { x, y };
     };
 
     if (moveParticlesOnHover) {
-      container.addEventListener("mousemove", handleMouseMove);
+      window.addEventListener("mousemove", handleMouseMove);
     }
 
     const count = particleCount;
@@ -147,7 +157,7 @@ const Particles = ({
       positions.set([x * r, y * r, z * r], i * 3);
       randoms.set(
         [Math.random(), Math.random(), Math.random(), Math.random()],
-        i * 4,
+        i * 4
       );
       const col = hexToRgb(palette[Math.floor(Math.random() * palette.length)]);
       colors.set(col, i * 3);
@@ -209,15 +219,15 @@ const Particles = ({
     return () => {
       window.removeEventListener("resize", resize);
       if (moveParticlesOnHover) {
-        container.removeEventListener("mousemove", handleMouseMove);
+        window.removeEventListener("mousemove", handleMouseMove);
       }
       cancelAnimationFrame(animationFrameId);
       if (container.contains(gl.canvas)) {
         container.removeChild(gl.canvas);
       }
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
+    pageHeight,
     particleCount,
     particleSpread,
     speed,
@@ -231,7 +241,15 @@ const Particles = ({
   ]);
 
   return (
-    <div ref={containerRef} className={`relative w-full h-full ${className}`} />
+    <div
+      ref={containerRef}
+      className={`absolute top-0 left-0 w-full ${className || ""}`}
+      style={{
+        height: pageHeight || "100vh",
+        pointerEvents: "none",
+        zIndex: 0,
+      }}
+    />
   );
 };
 

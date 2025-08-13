@@ -19,12 +19,12 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-[1280px]">
+    <div className="min-h-[1280px] overflow-x-hidden">
       <ScrollProgress />
       <SmoothCursor />
 
       <nav className={`fixed top-4 inset-x-0 z-[5000] w-[100%] duration-300 
-         ${scroll ? "scale-[0.75] text-l" : ""}`}>
+         ${scroll ? "scale-[0.90] text-l" : ""}`}>
         <div className="max-w-5xl mx-auto z-[5000] font-bold 
     flex justify-between rounded-md px-6 py-3
     bg-white/20 dark:bg-black/20 backdrop-blur-md
@@ -52,7 +52,7 @@ export default function Home() {
         <div style={{ width: '100%', height: '600px', position: 'relative' }}>
           <Particles
             particleColors={['#2ddc12ff', '#2467ccff']}
-            particleCount={200}
+            particleCount={800}
             particleSpread={20}
             speed={0.1}
             particleBaseSize={100}
