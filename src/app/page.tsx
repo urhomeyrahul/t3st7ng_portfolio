@@ -32,6 +32,18 @@ export default function Home() {
     { label: "Figma", src: "https://cdn.simpleicons.org/figma?viewbox=auto&size=20" },
   ];
 
+  const IMAGES_ROW_C = [
+    { label: "Wireshark", src: "https://cdn.simpleicons.org/wireshark?viewbox=auto&size=20" },
+    { label: "OWASP", src: "https://cdn.simpleicons.org/owasp?viewbox=auto&size=20" },
+    { label: "Cyber Security", src: "https://cdn.simpleicons.org/cyberdefenders?viewbox=auto&size=20" },
+    { label: "Metasploit", src: "https://cdn.simpleicons.org/metasploit?viewbox=auto&size=20" },
+    { label: "Linux", src: "https://cdn.simpleicons.org/linux?viewbox=auto&size=20" },
+    { label: "Kali Linux", src: "https://cdn.simpleicons.org/kalilinux?viewbox=auto&size=20" },
+    { label: "Burp Suite", src: "https://cdn.simpleicons.org/burpsuite?viewbox=auto&size=20" },
+    { label: "ZAP", src: "https://cdn.simpleicons.org/zap?viewbox=auto&size=20" },
+    { label: "Red Hat", src: "https://cdn.simpleicons.org/redhat?viewbox=auto&size=20" },
+  ];
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(scrollY > 35);
@@ -135,7 +147,24 @@ export default function Home() {
                       height={160}
                       loading="lazy"
                       decoding="async"
-                      className="h-15 w-26 rounded-lg"
+                      className="h-15 w-30 rounded-lg"
+                    />
+                    <span className="mt-1 text-sm text-center">{item.label}</span>
+                  </div>
+                ))}
+              </ScrollVelocityRow>
+
+              <ScrollVelocityRow baseVelocity={4} direction={1} className="py-2">
+                {IMAGES_ROW_C.map((item, idx) => (
+                  <div key={idx} className="flex flex-col items-center mx-6">
+                    <img
+                      src={`${item.src}&ixlib=rb-4.0.3`}
+                      alt={item.label}
+                      width={240}
+                      height={160}
+                      loading="lazy"
+                      decoding="async"
+                      className="h-15 w-20 rounded-md"
                     />
                     <span className="mt-1 text-sm text-center">{item.label}</span>
                   </div>
