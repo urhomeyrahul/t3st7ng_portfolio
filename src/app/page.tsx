@@ -6,6 +6,8 @@ import { ScrollProgress } from "@/components/magicui/scroll-progress";
 import Particles from '../blocks/Backgrounds/Particles/Particles';
 import { SmoothCursor } from "../components/ui/smooth-cursor";
 import { ScrollVelocityContainer, ScrollVelocityRow, } from "@/components/magicui/scroll-based-velocity";
+import { Mail } from "lucide-react";
+
 
 export default function Home() {
 
@@ -81,7 +83,6 @@ export default function Home() {
       </nav>
 
       <div className="h-[1280px] w-full">
-        {/* <DotPattern glow={true} /> */}
 
         <div style={{ width: '100%', height: '600px', position: 'relative' }}>
           <Particles
@@ -96,7 +97,7 @@ export default function Home() {
             className="absolute inset-0 z-0"
           />
 
-          <div className="absolute inset-0 flex flex-col justify-center px-15 z-10 pointer-events-none">
+          <div className="absolute inset-0 flex flex-col justify-center px-15 z-10">
             <h1
               className="font-bold text-5xl flex px-6 py-2"
             >
@@ -107,11 +108,62 @@ export default function Home() {
               <br />applications using modern technologies
             </p>
 
+            <div className="flex gap-4 mt-8 px-4">
+
+              <a
+                href="mailto:rahul.aa.2015@gmail.com"
+                aria-label="Hire me via email"
+                className="flex items-center gap-2 px-4 py-2 rounded-md font-medium shadow hover:shadow-md transition 
+             bg-black text-white dark:bg-white dark:text-black"
+              >
+                <Mail className="w-4 h-4" />
+                Hire me
+              </a>
+              <a
+                href="https://github.com/urhomeyrahul"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <button
+                  aria-label="GitHub"
+                  className="p-2 rounded-md border border-neutral-700 
+               bg-white dark:bg-black 
+               hover:bg-neutral-200 dark:hover:bg-neutral-800 transition"
+                >
+                  <img
+                    src="https://cdn.simpleicons.org/github/000000"
+                    alt="GitHub"
+                    className="h-6 w-6 dark:invert"
+                  />
+                </button>
+              </a>
+
+              <a
+                href="https://linkedin.com/in/raggarwa24"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <button
+                  aria-label="LinkedIn"
+                  className="p-2 rounded-md border border-neutral-700 
+               bg-white dark:bg-black 
+               hover:bg-neutral-200 dark:hover:bg-neutral-800 transition"
+                >
+                  <img
+                    src="https://www.svgrepo.com/show/448234/linkedin.svg"
+                    alt="LinkedIn"
+                    className="h-6 w-6 dark:invert"
+                  />
+                </button>
+              </a>
+
+            </div>
 
           </div>
 
+
         </div>
-        <div className="py-20">
+        <div className="py-25">
           <h1 className="font-bold text-5xl flex px-22 py-2">
             Technology Stack
           </h1>
@@ -180,9 +232,16 @@ export default function Home() {
 
       </div>
 
+      {/* // #modal
+      <div>
+        <button type="button" className="btn btn-primary" data-toggle="modal" data-target="contactModal">MODAL</button>
+        <div className="modal fade" id="contactModal" role="dialogue" aria-hidden="true">
+          <div className="modal-content"
+        </div>
+      </div> */}
 
 
-    </div>
+    </div >
   );
 
 
