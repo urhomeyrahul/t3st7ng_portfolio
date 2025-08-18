@@ -6,7 +6,14 @@ import { ScrollProgress } from "@/components/magicui/scroll-progress";
 import Particles from '../blocks/Backgrounds/Particles/Particles';
 import { SmoothCursor } from "../components/ui/smooth-cursor";
 import { ScrollVelocityContainer, ScrollVelocityRow, } from "@/components/magicui/scroll-based-velocity";
-import { Mail } from "lucide-react";
+import { Mail, User, MessageSquare } from "lucide-react";
+import Modal from '@mui/material/Modal';
+import Fade from '@mui/material/Fade';
+import Box from '@mui/material/Box';
+import Backdrop from '@mui/material/Backdrop';
+import Footer from '@/app/Footer'
+
+import { ShinyButton } from "@/components/magicui/shiny-button";
 
 
 export default function Home() {
@@ -54,6 +61,14 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleSubmit = () => {
+    return false;
+  }
+
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   return (
     <div className="min-h-[1280px] overflow-x-hidden">
       <ScrollProgress />
@@ -68,19 +83,25 @@ export default function Home() {
     shadow-lg text-black dark:text-white">
 
           <div className="font-bold flex space-x-10 justify-between">
-            <a href="#" className="hover:underline ">Heading</a>
-            <a href="#" className="hover:underline ">Contact me</a>
+            {/* <a href="#" className="hover:underline "> */}
+            <ShinyButton>Heading</ShinyButton>
+            {/* </a> */}
+            {/* <a href="#" className="hover:underline " onClick={(e) => { e.preventDefault; handleOpen(); }}> */}
+            <ShinyButton onClick={(e) => { e.preventDefault; handleOpen(); }}>
+              Contact me
+            </ShinyButton>
+            {/* </a> */}
           </div>
 
           <div className="flex space-x-10 flex justify-between">
-            <a href="#" className="hover:underline ">Help </a>
-            <a href="#" className="hover:underline ">About me</a>
-            <a href="#" className="hover:underline ">Careers </a>
+            {/* <a href="#" className="hover:underline "> */}
+            <ShinyButton>About</ShinyButton>
+            {/* </a> */}
             <AnimatedThemeToggler />
           </div>
 
         </div>
-      </nav>
+      </nav >
 
       <div className="h-[1280px] w-full">
 
@@ -172,9 +193,9 @@ export default function Home() {
         <div className="relative flex w-full flex-col items-center justify-center overflow-x-hidden">
           <div className="relative w-[80%] rounded-3xl overflow-hidden">
             <ScrollVelocityContainer>
-              <ScrollVelocityRow baseVelocity={4} direction={1} className="py-2">
+              <ScrollVelocityRow baseVelocity={4} direction={1} className="py-1">
                 {IMAGES_ROW_A.map((item, idx) => (
-                  <div key={idx} className="flex flex-col items-center mx-6">
+                  <div key={idx} className="flex flex-col items-center mx-4">
                     <img
                       src={`${item.src}&ixlib=rb-4.0.3`}
                       alt={item.label}
@@ -182,7 +203,7 @@ export default function Home() {
                       height={160}
                       loading="lazy"
                       decoding="async"
-                      className="h-15 w-20 rounded-md"
+                      className="h-10 w-15 rounded-md"
                     />
                     <span className="mt-1 text-sm text-center">{item.label}</span>
                   </div>
@@ -191,7 +212,7 @@ export default function Home() {
 
               <ScrollVelocityRow baseVelocity={6} direction={-1} className="py-4">
                 {IMAGES_ROW_B.map((item, idx) => (
-                  <div key={idx} className="flex flex-col items-center mx-6 my-6">
+                  <div key={idx} className="flex flex-col items-center mx-4 my-6">
                     <img
                       src={`${item.src}&ixlib=rb-4.0.3`}
                       alt={item.label}
@@ -199,7 +220,7 @@ export default function Home() {
                       height={160}
                       loading="lazy"
                       decoding="async"
-                      className="h-15 w-30 rounded-lg"
+                      className="h-10 w-15 rounded-lg"
                     />
                     <span className="mt-1 text-sm text-center">{item.label}</span>
                   </div>
@@ -208,7 +229,7 @@ export default function Home() {
 
               <ScrollVelocityRow baseVelocity={4} direction={1} className="py-2">
                 {IMAGES_ROW_C.map((item, idx) => (
-                  <div key={idx} className="flex flex-col items-center mx-6">
+                  <div key={idx} className="flex flex-col items-center mx-4">
                     <img
                       src={`${item.src}&ixlib=rb-4.0.3`}
                       alt={item.label}
@@ -216,7 +237,7 @@ export default function Home() {
                       height={160}
                       loading="lazy"
                       decoding="async"
-                      className="h-15 w-20 rounded-md"
+                      className="h-10 w-15 rounded-md"
                     />
                     <span className="mt-1 text-sm text-center">{item.label}</span>
                   </div>
@@ -229,20 +250,107 @@ export default function Home() {
           </div>
         </div>
 
+      </div>
+
+      <div>
+        <Modal
+          aria-labelledby="transition-modal-title"
+          aria-describedby="transition-modal-description"
+          open={open}
+          onClose={handleClose}
+          slots={{ backdrop: Backdrop }}
+          closeAfterTransition
+          slotProps={{
+            backdrop: { timeout: 500 },
+          }}
+        >
+          <Fade in={open}>
+            <Box
+              className="
+    absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
+    w-full max-w-md rounded-xl shadow-lg p-6 
+    bg-black text-white 
+    dark:bg-gray-900 dark:text-white
+  "
+            >
+              <h2 className="font-bold text-3xl">Contact Me</h2>
+              <p className="text-sm text-gray-300 mt-4">
+                I typically respond quickly, so feel free to reach out!
+              </p>
+
+              <form onSubmit={handleSubmit} className="space-y-6 mt-6">
+                <div className="relative">
+                  <input
+                    type="text"
+                    name="name"
+                    className="pl-10 pr-4 py-2 w-full rounded-md border border-gray-700 
+                   bg-transparent text-white 
+                   placeholder-gray-400"
+                    placeholder="Name"
+                    required
+                  />
+                  <User
+                    className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground text-sm"
+                    size={18}
+                  />
+                </div>
+
+                <div className="relative">
+                  <input
+                    type="email"
+                    name="email"
+                    className="pl-10 pr-4 py-2 w-full rounded-md border border-gray-700 
+                   bg-transparent text-white 
+                   placeholder-gray-400"
+                    placeholder="Email"
+                    required
+                  />
+                  <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
+                </div>
+
+                <div className="relative">
+                  <textarea
+                    name="message"
+                    rows={4}
+                    className="pl-10 pr-4 py-2 w-full rounded-md border border-gray-700 
+                   bg-transparent text-white 
+                   placeholder-gray-400"
+                    placeholder="Type your message"
+                    required
+                  />
+                  <MessageSquare className="absolute left-3 top-3 text-gray-400" size={18} />
+                </div>
+
+                <div className="flex justify-between mt-6">
+                  <button
+                    type="button"
+                    onClick={handleClose}
+                    className="px-4 py-2 rounded-md font-medium 
+                   bg-gray-700 text-white 
+                   hover:opacity-80 transition"
+                  >
+                    Close
+                  </button>
+                  <button
+                    type="submit"
+                    className="px-4 py-2 rounded-md font-medium 
+                   bg-blue-600 text-white 
+                   hover:opacity-80 transition"
+                  >
+                    Send Message
+                  </button>
+                </div>
+              </form>
+            </Box>
+
+          </Fade>
+        </Modal>
 
       </div>
 
-      {/* // #modal
-      <div>
-        <button type="button" className="btn btn-primary" data-toggle="modal" data-target="contactModal">MODAL</button>
-        <div className="modal fade" id="contactModal" role="dialogue" aria-hidden="true">
-          <div className="modal-content"
-        </div>
-      </div> */}
-
+      <Footer onContactClick={handleOpen} />
 
     </div >
   );
-
 
 }
