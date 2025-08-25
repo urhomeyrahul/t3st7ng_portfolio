@@ -2,6 +2,7 @@
 "use client"
 
 import { ShinyButton } from "@/components/magicui/shiny-button";
+import Image from "next/image";
 
 type FooterProps = {
     onContactClick: () => void;
@@ -27,9 +28,12 @@ export default function Footer({ onContactClick }: FooterProps) {
                bg-white dark:bg-black 
                hover:bg-neutral-200 dark:hover:bg-neutral-800 transition"
                         >
-                            <img
+                            <Image
                                 src="https://cdn.simpleicons.org/github/000000"
                                 alt="GitHub"
+                                width={24}
+                                unoptimized
+                                height={24}
                                 className="h-6 w-6 dark:invert"
                             />
                         </button>
@@ -46,9 +50,12 @@ export default function Footer({ onContactClick }: FooterProps) {
                bg-white dark:bg-black 
                hover:bg-neutral-200 dark:hover:bg-neutral-800 transition"
                         >
-                            <img
+                            <Image
                                 src="https://www.svgrepo.com/show/448234/linkedin.svg"
                                 alt="LinkedIn"
+                                width={24}
+                                height={24}
+                                unoptimized
                                 className="h-6 w-6 dark:invert"
                             />
                         </button>

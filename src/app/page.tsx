@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ScrollVelocityContainer, ScrollVelocityRow, } from "@/components/magicui/scroll-based-velocity";
 import { Mail } from "lucide-react";
+import Image from "next/image";
 
 export default function Home() {
 
@@ -71,9 +72,12 @@ export default function Home() {
             className="p-2 rounded-md border border-neutral-700 bg-white dark:bg-black 
               hover:bg-neutral-200 dark:hover:bg-neutral-800 transition"
           >
-            <img
+            <Image
               src="https://cdn.simpleicons.org/github/000000"
               alt="GitHub"
+              width={24}
+              unoptimized
+              height={24}
               className="h-6 w-6 dark:invert"
             />
           </a>
@@ -86,9 +90,12 @@ export default function Home() {
             className="p-2 rounded-md border border-neutral-700 bg-white dark:bg-black 
               hover:bg-neutral-200 dark:hover:bg-neutral-800 transition"
           >
-            <img
+            <Image
               src="https://www.svgrepo.com/show/448234/linkedin.svg"
               alt="LinkedIn"
+              width={24}
+              unoptimized
+              height={24}
               className="h-6 w-6 dark:invert"
             />
           </a>
@@ -104,9 +111,12 @@ export default function Home() {
               <ScrollVelocityRow baseVelocity={4} direction={1} className="py-1">
                 {IMAGES_ROW_A.map((item, idx) => (
                   <div key={idx} className="flex flex-col items-center mx-4">
-                    <img
+                    <Image
                       src={`${item.src}&ixlib=rb-4.0.3`}
                       alt={item.label}
+                      width={24}
+                      unoptimized
+                      height={24}
                       className="h-10 w-15 rounded-md"
                     />
                     <span className="mt-1 text-sm text-center">{item.label}</span>
@@ -117,9 +127,12 @@ export default function Home() {
               <ScrollVelocityRow baseVelocity={6} direction={-1} className="py-4">
                 {IMAGES_ROW_B.map((item, idx) => (
                   <div key={idx} className="flex flex-col items-center mx-4 my-6">
-                    <img
+                    <Image
                       src={`${item.src}&ixlib=rb-4.0.3`}
                       alt={item.label}
+                      width={24}
+                      unoptimized
+                      height={24}
                       className="h-10 w-15 rounded-lg"
                     />
                     <span className="mt-1 text-sm text-center">{item.label}</span>
@@ -130,9 +143,12 @@ export default function Home() {
               <ScrollVelocityRow baseVelocity={4} direction={1} className="py-2">
                 {IMAGES_ROW_C.map((item, idx) => (
                   <div key={idx} className="flex flex-col items-center mx-4">
-                    <img
+                    <Image
                       src={`${item.src}&ixlib=rb-4.0.3`}
                       alt={item.label}
+                      width={24}
+                      unoptimized
+                      height={24}
                       className="h-10 w-15 rounded-md"
                     />
                     <span className="mt-1 text-sm text-center">{item.label}</span>
