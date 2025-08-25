@@ -67,6 +67,7 @@ export default function Projects() {
                                         </CardItem>
                                     </CardBody>
                                 </CardContainer>
+                                
                             </section>
 
                             <section className="flex gap-4 pt-3 lg:w-1/2 mb-25">
