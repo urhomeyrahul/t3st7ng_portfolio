@@ -37,7 +37,7 @@ export default function Projects() {
     return (
         <>
             <main className="flex flex-col justify-center px-15 py-20 space-y-32 z-10">
-                <section className="max-w-3xl py-45">
+                <section className="max-w-3xl py-45 scale-90 sm:scale-100 ">
                     <h1 className="font-bold text-6xl mb-4">All Projects</h1>
 
                     <p className="text-lg text-gray-600 dark:text-gray-300">
@@ -46,7 +46,7 @@ export default function Projects() {
                 </section>
 
 
-                <div className="space-y-18">
+                <div className="space-y-18 scale-90 sm:scale-100 ">
                     {Projects.map((project, index) => (
                         <div
                             key={index}
@@ -62,7 +62,7 @@ export default function Projects() {
                                         >
                                             <img
                                                 src={project.picture.src}
-                                                className="rounded-3xl"
+                                                className="rounded-3xl scale-80 sm:scale-100"
                                             />
                                         </CardItem>
                                     </CardBody>

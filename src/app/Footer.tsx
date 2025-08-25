@@ -11,8 +11,10 @@ type FooterProps = {
 export default function Footer({ onContactClick }: FooterProps) {
 
     return (
-        <footer className="border-t shadow-lg px-15">
-            <div className="container flex flex-col justify-between gap-2 sm:flex-row py-3.5 w-full shrink-0 items-center px-6 md:px-6">
+        <footer className="border-t shadow-lg px-5">
+            <div className="scale-90 sm:scale-100 container flex flex-row 
+            justify-between gap-2 sm:flex-row py-3.5 w-full shrink-0 items-center 
+            px-6 md:px-6">
                 <ShinyButton onClick={onContactClick}>
                     Get In Touch
                 </ShinyButton>

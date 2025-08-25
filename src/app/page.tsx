@@ -45,8 +45,8 @@ export default function Home() {
   const handleClose = () => setOpen(false);
 
   return (
-    <main className="flex flex-col flex flex-col justify-center px-15 py-20 space-y-32 z-10">
-      <section className="max-w-3xl py-45">
+    <main className="flex flex-col flex-col justify-center sm:px-15 sm:py-20 px-12 py-17 space-y-32 z-10">
+      <section className="max-w-3xl py-45 scale-80 sm:scale-100">
         <h1 className="font-bold text-6xl mb-4">The Programmer | C0d3r</h1>
         <p className="text-lg text-gray-600 dark:text-gray-300">
           Front-End Developer crafting high-performance, responsive, and user-friendly web
@@ -102,11 +102,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full max-w-10xl">
+      <section className="w-full max-w-10xl scale-85 sm:scale-80 sm:scale-100">
         <h2 className="font-bold text-5xl mb-8 py-2">Technology Stack</h2>
 
         <div className="relative flex flex-col items-center justify-center overflow-x-hidden">
-          <div className="relative w-[80%] rounded-3xl overflow-hidden mb-25 pt-9">
+          <div className="relative w-[100%] sm:w-[80%] rounded-3xl overflow-hidden mb-25 pt-9">
             <ScrollVelocityContainer>
               <ScrollVelocityRow baseVelocity={4} direction={1} className="py-1">
                 {IMAGES_ROW_A.map((item, idx) => (
