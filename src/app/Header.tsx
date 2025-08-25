@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react";
+import Link from 'next/link';
 import { AnimatedThemeToggler } from "@/components/magicui/animated-theme-toggler";
 import { ShinyButton } from "@/components/magicui/shiny-button";
 
@@ -30,22 +31,21 @@ export default function Header({ handleOpen }: HeaderProps) {
     shadow-lg text-black dark:text-white">
 
                     <div className="font-bold flex space-x-10 justify-between">
-                        {/* <a href="#" className="hover:underline "> */}
-                        <ShinyButton>Projects</ShinyButton>
-                        {/* </a> */}
-                        {/* <a href="#" className="hover:underline " onClick={(e) => { e.preventDefault; handleOpen(); }}> */}
-                        <ShinyButton onClick={(e) => { e.preventDefault; handleOpen(); }}>
+
+                        <Link href="/projects" ><ShinyButton>Projects</ShinyButton></Link>
+
+                        <ShinyButton onClick={(e) => { e.preventDefault(); handleOpen(); }}>
                             Contact me
                         </ShinyButton>
-                        {/* </a> */}
+
                     </div>
 
-                    <div className="flex space-x-10 flex justify-between">
-                        {/* <a href="#" className="hover:underline "> */}
-                        <ShinyButton>About</ShinyButton>
-                        {/* </a> */}
-                        <AnimatedThemeToggler />
-                    </div>
+                    <Link href="/">
+                        <div className="flex space-x-10 flex justify-between">
+                            <ShinyButton>Home</ShinyButton>
+                            <AnimatedThemeToggler />
+                        </div>
+                    </Link>
 
                 </div>
             </nav >
