@@ -20,16 +20,42 @@ export default function Header({ handleOpen }: HeaderProps) {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    const mainNavLink =
-        pathname === "/projects" ? (
-            <Link href="/">
-                <ShinyButton>Home</ShinyButton>
-            </Link>
-        ) : (
-            <Link href="/projects">
-                <ShinyButton>Projects</ShinyButton>
-            </Link>
-        );
+    let mainNavLink
+
+    if (pathname === "/projects") {
+        mainNavLink = (
+            <>
+                <Link href="/">
+                    <ShinyButton>Home</ShinyButton>
+                </Link>
+                <Link href="/timeline">
+                    <ShinyButton>Timeline</ShinyButton>
+                </Link>
+            </>
+        )
+    } else if (pathname === "/") {
+        mainNavLink = (
+            <>
+                <Link href="/projects">
+                    <ShinyButton>Projects</ShinyButton>
+                </Link>
+                <Link href="/timeline">
+                    <ShinyButton>Timeline</ShinyButton>
+                </Link>
+            </>
+        )
+    } else if (pathname === "/timeline") {
+        mainNavLink = (
+            <>
+                <Link href="/">
+                    <ShinyButton>Home</ShinyButton>
+                </Link>
+                <Link href="/projects">
+                    <ShinyButton>Projects</ShinyButton>
+                </Link>
+            </>
+        )
+    }
 
     return (
         <nav
