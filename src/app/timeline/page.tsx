@@ -21,7 +21,7 @@ function createTimelineItems(data: TimeLineEntry[]) {
         title: item.title,
         content: (
             <div className="space-y-2 text-sm text-muted-foreground">
-                <p className="text-3xl">
+                <p className="text-xl">
                     {item.type === "experience" ? item.name : item.name}
                     {/* {<Avatar className="rounded-lg">
                         <AvatarImage
@@ -68,7 +68,7 @@ export default function Experience() {
                 </p> <br />
             </section>
 
-            <div className="space-y-18 scale-90 sm:scale-100 ">
+            <div className="space-y-18 scale-90 sm:scale-100 sm:py-1 ">
 
                 <Timeline data={items} />
 

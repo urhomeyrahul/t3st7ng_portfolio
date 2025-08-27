@@ -30,6 +30,7 @@ interface ShinyButtonProps
   MotionProps {
   children: React.ReactNode;
   className?: string;
+   textClassName?: string;
 }
 
 export const ShinyButton = React.forwardRef<

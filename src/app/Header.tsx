@@ -69,8 +69,8 @@ export default function Header({ handleOpen }: HeaderProps) {
             <div
                 className="
       max-w-5xl mx-auto font-bold flex justify-between items-center
-      rounded-md 
-      px-3 py-2 text-xs
+      rounded-lg 
+      px-3 py-2 text-xs sm:text-md
       sm:px-6 sm:py-3 sm:text-base
       bg-white/20 dark:bg-black/20 backdrop-blur-md
       border border-white/40 dark:border-white/20 shadow-lg
@@ -79,8 +79,9 @@ export default function Header({ handleOpen }: HeaderProps) {
             >
                 {mainNavLink}
 
-                <div className="flex items-center space-x-5 sm:space-x-6">
+                <div className="flex items-center space-x-5 sm:space-x-6 ">
                     <ShinyButton
+                        textClassName="text-[10px] sm:text-lg"
                         onClick={(e) => {
                             e.preventDefault();
                             handleOpen();
