@@ -13,7 +13,7 @@ export type TimeLineEntry = {
     roleType?: 'Fulltime' | 'Part-time' | 'Consultant' | 'Freelance'
 }
 
-export let experienceData: TimeLineEntry[] = [
+export const experienceData: TimeLineEntry[] = [
     {
         name: "Gedu Services",
         type: "experience",
@@ -54,7 +54,7 @@ export let experienceData: TimeLineEntry[] = [
 ]
 
 
-export let educationData: TimeLineEntry[] = [
+export const educationData: TimeLineEntry[] = [
     {
         title: "Wireless Information Networking",
         type: "education",
