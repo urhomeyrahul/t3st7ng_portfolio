@@ -166,7 +166,7 @@ export default function Home() {
                   </a>
 
                   <a
-                    href="https://wa.me/9205830413"
+                    href="https://wa.me/+919205830413"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Whatsapp"
