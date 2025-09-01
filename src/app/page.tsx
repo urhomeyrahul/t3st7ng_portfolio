@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ScrollVelocityContainer, ScrollVelocityRow, } from "@/components/magicui/scroll-based-velocity";
 import { Mail } from "lucide-react";
 import Image from "next/image";
+import { AboutData } from '@/app/maindata'
 
 export default function Home() {
 
@@ -103,10 +104,154 @@ export default function Home() {
       </section>
 
       <section className="w-full max-w-10xl scale-85 sm:scale-80 sm:scale-100">
+
+        <h1 className="font-bold text-6xl mb-4">About</h1>
+
+        {AboutData.map((about, index) => (
+          <div key={index} className="flex flex-col lg:flex-row justify-center gap-10">
+            <section className="lg:w-1/3">
+
+
+              <div className="">
+                <Image
+                  alt={about.title}
+                  src={about.image}
+                  height={200}
+                  width={220}
+                  className="rounded-4xl mt-8"
+                />
+
+                <p className="text-2xl text-bold text-gray-600 dark:text-gray-300 mt-6">
+                  Rahul Aggarwal
+                </p>
+                <p className="text-lg text-gray-600 dark:text-gray-300">
+                  Software Engineer
+                </p>
+
+                <div className="flex gap-4 mt-8">
+                  <a
+                    href="https://github.com/urhomeyrahul"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub"
+                    className="p-2 rounded-md border border-neutral-700 bg-white dark:bg-black 
+              hover:bg-neutral-200 dark:hover:bg-neutral-800 transition"
+                  >
+                    <Image
+                      src="https://cdn.simpleicons.org/github/000000"
+                      alt="GitHub"
+                      width={24}
+                      unoptimized
+                      height={24}
+                      className="h-6 w-6 dark:invert"
+                    />
+                  </a>
+
+                  <a
+                    href="https://linkedin.com/in/raggarwa24"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn"
+                    className="p-2 rounded-md border border-neutral-700 bg-white dark:bg-black 
+              hover:bg-neutral-200 dark:hover:bg-neutral-800 transition"
+                  >
+                    <Image
+                      src="https://www.svgrepo.com/show/448234/linkedin.svg"
+                      alt="LinkedIn"
+                      width={24}
+                      unoptimized
+                      height={24}
+                      className="h-6 w-6 dark:invert"
+                    />
+                  </a>
+
+                  <a
+                    href="https://wa.me/9205830413"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Whatsapp"
+                    className="p-2 rounded-md border border-neutral-700 bg-white dark:bg-black 
+              hover:bg-neutral-200 dark:hover:bg-neutral-800 transition"
+                  >
+                    <Image
+                      src="https://cdn.simpleicons.org/whatsapp/000000"
+                      alt="Whatsapp"
+                      width={24}
+                      unoptimized
+                      height={24}
+                      className="h-6 w-6 dark:invert"
+                    />
+                  </a>
+
+                  <a
+                    href="http://instagram.com/urhomey.rahul1"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                    className="p-2 rounded-md border border-neutral-700 bg-white dark:bg-black 
+              hover:bg-neutral-200 dark:hover:bg-neutral-800 transition"
+                  >
+                    <Image
+                      src="https://cdn.simpleicons.org/instagram/000000"
+                      alt="Instagram"
+                      width={24}
+                      unoptimized
+                      height={24}
+                      className="h-6 w-6 dark:invert"
+                    />
+                  </a>
+
+                  <a
+                    href="http://x.com/raggarwal413"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Twitter"
+                    className="p-2 rounded-md border border-neutral-700 bg-white dark:bg-black 
+              hover:bg-neutral-200 dark:hover:bg-neutral-800 transition"
+                  >
+                    <Image
+                      src="https://cdn.simpleicons.org/x/000000"
+                      alt="Twitter"
+                      width={24}
+                      unoptimized
+                      height={24}
+                      className="h-6 w-6 dark:invert"
+                    />
+                  </a>
+
+                </div>
+              </div>
+
+            </section>
+
+            <section className="flex flex-col gap-4 pt-3 lg:w-1/2 mb-25">
+              <p>{about.description}</p>
+
+              <ul className="list-disc pl-5 space-y-2">
+                {about.additionalPoints.map((point, i) => (
+                  <li key={i}>✅ {point}</li>
+                ))}
+              </ul>
+
+              <p>{about.extraDescription}</p>
+
+              <ul className="list-disc pl-5 space-y-2">
+                <li>Capable of working on all layers of software development, from database to user interface.</li>
+                <li>Strong problem-solving abilities and ability to adapt to new technologies quickly.</li>
+                <li>Familiar with various operating systems, including Windows, Linux, and Unix, and their security features and vulnerabilities.</li>
+              </ul>
+            </section>
+          </div>
+        ))}
+
+      </section>
+
+
+      <section className="w-full max-w-10xl scale-85 sm:scale-80 sm:scale-100">
         <h2 className="font-bold text-5xl mb-8 py-2">Technology Stack</h2>
 
         <div className="relative flex flex-col items-center justify-center overflow-x-hidden">
-          <div className="relative w-[100%] sm:w-[80%] rounded-3xl overflow-hidden mb-25 pt-9">
+          <div className="relative w-[100%] sm:w-[80%] rounded-3xl sm:rounded-3xl overflow-hidden mb-25 pt-9">
             <ScrollVelocityContainer>
               <ScrollVelocityRow baseVelocity={4} direction={1} className="py-1">
                 {IMAGES_ROW_A.map((item, idx) => (
@@ -117,7 +262,7 @@ export default function Home() {
                       width={24}
                       unoptimized
                       height={24}
-                      className="h-10 w-15 rounded-md"
+                      className="h-7 w-15 sm:h-8 sm:w-15 rounded-md"
                     />
                     <span className="mt-1 text-sm text-center">{item.label}</span>
                   </div>
@@ -133,7 +278,7 @@ export default function Home() {
                       width={24}
                       unoptimized
                       height={24}
-                      className="h-10 w-15 rounded-lg"
+                      className="h-7 w-15 sm:h-8 sm:w-15 rounded-md"
                     />
                     <span className="mt-1 text-sm text-center">{item.label}</span>
                   </div>
@@ -149,7 +294,7 @@ export default function Home() {
                       width={24}
                       unoptimized
                       height={24}
-                      className="h-10 w-15 rounded-md"
+                      className="h-7 w-15 sm:h-8 sm:w-15 rounded-md"
                     />
                     <span className="mt-1 text-sm text-center">{item.label}</span>
                   </div>
@@ -162,6 +307,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
     </main>
   );
 

@@ -14,6 +14,30 @@ export type TimeLineEntry = {
     roleType?: 'Fulltime' | 'Part-time' | 'Consultant' | 'Freelance'
 }
 
+export type About = {
+    title: string
+    description: string
+    image: string
+    extraDescription: string
+    additionalPoints: string[]
+}
+
+export const AboutData: About[] = [
+    {
+        title: "Hi I'm Rahul Aggarwal",
+        description: `As both a Full Stack Developer and Penetration Tester, I leverage my technical skills and domain knowledge to create web applications that are secure, efficient, and user-centric. I hold a degree in Wireless Information Networking from Fleming College and a Bachelor of Computer Applications from IMS, Noida.`,
+        additionalPoints: [
+            "OWASP Top 10",
+            "Experience with RESTful services and SDLC (Software Developer Life Cycle).",
+            "Experience with frameworks/systems i.e Git, React JS, NextJS,TailWindCss, HTML, CSS.",
+            "Experience with Backend Realms i.e Java,, Spring Boot Microservices, MYSQL, JDBC.",
+            "Experience with Wireshark, Nmap, Metasploit, and Burp Suite for network scanning, vulnerability assessment, and penetration testing."
+        ],
+        extraDescription: `An Engineer with expertise in frontend development and solid backend experience. I’m passionate about building secure, scalable, and user-friendly applications, and I enjoy tackling complex problems with innovative solutions.`,
+        image: "/profile.jpg"
+    }
+];
+
 export const experienceData: TimeLineEntry[] = [
     {
         name: "Gedu Services",
