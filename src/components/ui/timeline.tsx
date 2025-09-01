@@ -17,7 +17,6 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
   const [height, setHeight] = useState(0);
   const [isDesktop, setIsDesktop] = useState(false);
 
-  // measure container height and detect screen size
   useEffect(() => {
     if (contentRef.current) {
       setHeight(contentRef.current.scrollHeight);
@@ -35,15 +34,14 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: isDesktop
-      ? ["start 35%", "end 80%"] // desktop/laptop
-      : ["start start", "end end"], // mobile
+      ? ["start 35%", "end 80%"]
+      : ["start start", "end end"],
   });
 
-  // Always call useTransform once to avoid conditional hooks
   const heightTransform = useTransform(
     scrollYProgress,
     [0, 0.5, 1],
-    [0, height, height] // desktop: smooth; mobile: grows then stays full
+    [0, height, height]
   );
 
   const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
@@ -63,7 +61,6 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
               </h3>
             </div>
 
-            {/* Right content */}
             <div className="relative pl-20 pr-4 md:pl-4 w-full">
               <h3 className="md:hidden block text-2xl mb-4 text-left font-bold text-neutral-500 dark:text-neutral-500">
                 {item.title}
@@ -73,7 +70,6 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
           </div>
         ))}
 
-        {/* Vertical timeline line */}
         <div
           style={{ height: height + "px" }}
           className="absolute left-4 md:left-8 top-0 w-[2px] 

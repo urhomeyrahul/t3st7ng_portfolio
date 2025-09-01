@@ -46,7 +46,7 @@ export default function Home() {
   const handleClose = () => setOpen(false);
 
   return (
-    <main className="flex flex-col flex-col justify-center sm:px-15 sm:py-20 px-12 py-17 space-y-32 z-10">
+    <main className="flex flex-col flex-col justify-center px-1 sm:px-15 sm:py-20 py-17 space-y-32 z-10">
       <section className="max-w-3xl py-45 scale-80 sm:scale-100">
         <h1 className="font-bold text-6xl mb-4">The Programmer | C0d3r</h1>
         <p className="text-lg text-gray-600 dark:text-gray-300">

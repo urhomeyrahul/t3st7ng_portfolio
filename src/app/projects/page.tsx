@@ -36,7 +36,7 @@ export default function Projects() {
 
     return (
         <>
-            <main className="flex flex-col justify-center px-15 py-20 space-y-32 z-10">
+            <main className="flex flex-col justify-center px-1 sm:px-15 py-20 space-y-32 z-10">
                 <section className="max-w-3xl py-45 scale-90 sm:scale-100 ">
                     <h1 className="font-bold text-6xl mb-4">All Projects</h1>
 
