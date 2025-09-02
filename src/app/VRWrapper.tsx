@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
-import { CSS3DRenderer, CSS3DObject } from "@/lib/three/CSS3DRenderer";
+import { CSS3DRenderer, CSS3DObject } from "three/examples/jsm/renderers/CSS3DRenderer.js";
 import { DeviceOrientationControls } from "@/lib/three/DeviceOrientationControls";
 
 export default function VRWrapper({ children }: { children: React.ReactNode }) {
@@ -10,7 +10,7 @@ export default function VRWrapper({ children }: { children: React.ReactNode }) {
   const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
-    if (!mountRef.current || !enabled) return;
+    if (!enabled || !mountRef.current) return;
 
     // Scene
     const scene = new THREE.Scene();
@@ -27,19 +27,20 @@ export default function VRWrapper({ children }: { children: React.ReactNode }) {
     // Renderer
     const renderer = new CSS3DRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
+    mountRef.current.innerHTML = ""; // Clear old canvas
     mountRef.current.appendChild(renderer.domElement);
 
-    // Wrap children in a DOM element
+    // Create container for React children
     const element = document.createElement("div");
-    element.style.width = "900px";
-    element.style.height = "700px";
+    element.style.width = "800px";
+    element.style.height = "600px";
     element.style.background = "white";
     element.style.borderRadius = "20px";
     element.style.overflow = "auto";
 
-    // Put React children into the CSS3DObject
+    // Put React children into 3D DOM
     const wrapper = document.createElement("div");
-    wrapper.id = "vr-inner";
+    wrapper.innerHTML = document.querySelector("#vr-content")?.innerHTML ?? "";
     element.appendChild(wrapper);
 
     const object = new CSS3DObject(element);
@@ -47,8 +48,9 @@ export default function VRWrapper({ children }: { children: React.ReactNode }) {
 
     // Controls
     const controls = new DeviceOrientationControls(camera);
+    controls.connect();
 
-    // Animate loop
+    // Animate
     const animate = () => {
       requestAnimationFrame(animate);
       controls.update();
@@ -56,6 +58,7 @@ export default function VRWrapper({ children }: { children: React.ReactNode }) {
     };
     animate();
 
+    // Resize
     const handleResize = () => {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
@@ -65,26 +68,24 @@ export default function VRWrapper({ children }: { children: React.ReactNode }) {
 
     return () => {
       window.removeEventListener("resize", handleResize);
+      controls.disconnect();
       if (renderer.domElement.parentNode) {
         renderer.domElement.parentNode.removeChild(renderer.domElement);
       }
     };
   }, [enabled]);
 
-  // ✅ Handles iOS/Android permission requirement
   const enableVR = () => {
-    const requestPermission = (
-      DeviceOrientationEvent as unknown as {
-        requestPermission?: () => Promise<PermissionState>;
-      }
-    ).requestPermission;
+    const requestPermission = (DeviceOrientationEvent as unknown as {
+      requestPermission?: () => Promise<PermissionState>;
+    }).requestPermission;
 
     if (typeof requestPermission === "function") {
-      requestPermission().then((res) => {
-        if (res === "granted") {
-          setEnabled(true);
-        }
-      });
+      requestPermission()
+        .then((res) => {
+          if (res === "granted") setEnabled(true);
+        })
+        .catch(() => setEnabled(true));
     } else {
       setEnabled(true);
     }
@@ -95,19 +96,15 @@ export default function VRWrapper({ children }: { children: React.ReactNode }) {
       {!enabled && (
         <button
           onClick={enableVR}
-          className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 
-                   px-6 py-3 rounded-xl bg-black text-white shadow-lg"
+          className="fixed top-4 left-1/2 -translate-x-1/2 z-50 bg-black text-white px-6 py-3 rounded-xl shadow-lg"
         >
           Enable VR
         </button>
       )}
-
-      <div ref={mountRef} className="fixed inset-0" />
-
-      {/* Hidden content, extracted into VR */}
       <div id="vr-content" style={{ display: "none" }}>
         {children}
       </div>
+      <div ref={mountRef} className="fixed inset-0 bg-black" />
     </>
   );
 }
