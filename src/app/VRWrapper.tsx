@@ -72,17 +72,28 @@ export default function VRWrapper({ children }: { children: React.ReactNode }) {
     }, []);
 
     const enableVR = () => {
-        if (controls) {
-            try {
-                // Needed on iOS Safari
-                (DeviceOrientationEvent as any).requestPermission?.().then(() => {
-                    controls.connect();
-                }).catch(() => {
-                    controls.connect();
-                });
-            } catch {
-                controls.connect();
+        if (!controls) return;
+
+        // Check if iOS requires permission
+        const requestPermission = (
+            DeviceOrientationEvent as unknown as {
+                requestPermission?: () => Promise<PermissionState>;
             }
+        ).requestPermission;
+
+        if (typeof requestPermission === "function") {
+            requestPermission()
+                .then((result) => {
+                    if (result === "granted") {
+                        controls.connect();
+                    } else {
+                        console.warn("Device orientation permission denied");
+                    }
+                })
+                .catch(() => controls.connect());
+        } else {
+            // Android & desktop browsers
+            controls.connect();
         }
     };
 
